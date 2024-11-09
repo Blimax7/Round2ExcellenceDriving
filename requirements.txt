@@ -5,7 +5,7 @@ beautifulsoup4
 Flask
 Flask-SocketIO
 eventlet
-openai
+openai>=1.0.0  # Ensure you have the latest OpenAI API library version
 numpy
 python-dotenv
 gunicorn
