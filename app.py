@@ -6,7 +6,7 @@ import numpy as np
 from dotenv import load_dotenv
 import pickle
 import uuid
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO
 
 # Load environment variables from .env file
 load_dotenv()
@@ -39,10 +39,10 @@ def load_embeddings_from_cache():
 def get_embedding(text, model="text-embedding-ada-002"):
     if text in embedding_cache:
         return embedding_cache[text]
-    
+
     # Update this line according to the new API usage
-    response = openai.Embedding.create(input=text, model=model)
-    
+    response = openai.Embedding.create(input=[text], model=model)  # Updated API call with list format
+
     embedding = response['data'][0]['embedding']
     embedding_cache[text] = embedding
     return embedding
