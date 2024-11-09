@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic RAG Chatbot</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="chat-container">
+<div class="chat-box" id="chat-box"></div>
+<input type="text" id="user-input" placeholder="Ask a question..." autofocus>
+<button onclick="sendQuery()">Send</button>
+<button onclick="startListening()">Speak</button> <!-- Speak button added -->
+</div>
+
+<script>
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = 'en-US';
+
+function appendToChatBox(content, isUser = false) {
+    const chatBox = document.getElementById('chat-box');
+    const message = document.createElement('div');
+    message.className = isUser ? 'user-message' : 'bot-message';
+    message.innerHTML = content;
+    chatBox.appendChild(message);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function sendQuery() {
+    const query = document.getElementById('user-input').value;
+    appendToChatBox(query, true); // Add user message to chat box
+    document.getElementById('user-input').value = ''; // Clear input
+    fetchQuery(query);
+}
+
+// Function to start listening to user voice
+function startListening() {
+    recognition.start();
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('user-input').value = transcript;
+        sendQuery();
+    };
+}
+
+function fetchQuery(query) {
+    fetch('/ask', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: query })
+    })
+    .then(response => response.json())
+    .then(data => {
+        appendToChatBox(data.response); // Add bot response to chat box
+        speakResponse(data.response); // Read out the bot response
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Text-to-Speech function
+function speakResponse(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+}
+</script>
+</body>
+</html>

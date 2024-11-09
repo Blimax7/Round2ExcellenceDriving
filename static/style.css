@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-container {
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 400px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.user-message, .bot-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+.user-message {
+    background-color: #e1f5fe;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.bot-message {
+    background-color: #eeeeee;
+    align-self: flex-start;
+    text-align: left;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 120px); /* Adjusted width to fit 2 buttons */
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 10px;
+    border: none;
+    background-color: #03a9f4;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    min-width: 60px; /* Minimum width for better alignment */
+}
+
+button:hover {
+    background-color: #0288d1;
+}
+
+button + button {
+    margin-left: 10px; /* Spacing between Send and Speak buttons */
+}
