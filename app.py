@@ -31,8 +31,9 @@ user_queries = {}
 def load_embeddings_from_cache():
     if os.path.exists(EMBEDDINGS_CACHE_FILE):
         with open(EMBEDDINGS_CACHE_FILE, 'rb') as f:
-            cache_data = pickle.load(f)
-            return cache_data.get('faiss_index'), cache_data.get('sections')
+            # Load as a tuple with (faiss_index, sections)
+            faiss_index, sections = pickle.load(f)
+            return faiss_index, sections
     return None, None
 
 def get_embedding(text, model="text-embedding-ada-002"):
@@ -41,7 +42,6 @@ def get_embedding(text, model="text-embedding-ada-002"):
     response = openai.Embedding.create(input=text, model=model)
     embedding = response['data'][0]['embedding']
     embedding_cache[text] = embedding
-    # Optionally, save updated cache here if desired
     return embedding
 
 @app.route('/')
