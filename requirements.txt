@@ -5,7 +5,7 @@ beautifulsoup4
 Flask
 Flask-SocketIO
 eventlet
-openai[datalib]
+openai
 numpy
 python-dotenv
 gunicorn
