@@ -8,10 +8,10 @@
 </head>
 <body>
 <div class="chat-container">
-<div class="chat-box" id="chat-box"></div>
-<input type="text" id="user-input" placeholder="Ask a question..." autofocus>
-<button onclick="sendQuery()">Send</button>
-<button onclick="startListening()">Speak</button> <!-- Speak button added -->
+    <div class="chat-box" id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Ask a question..." autofocus>
+    <button onclick="sendQuery()">Send</button>
+    <button onclick="startListening()">Speak</button>
 </div>
 
 <script>
@@ -29,12 +29,13 @@ function appendToChatBox(content, isUser = false) {
 
 function sendQuery() {
     const query = document.getElementById('user-input').value;
-    appendToChatBox(query, true); // Add user message to chat box
-    document.getElementById('user-input').value = ''; // Clear input
-    fetchQuery(query);
+    if (query) {
+        appendToChatBox(query, true);
+        document.getElementById('user-input').value = '';
+        fetchQuery(query);
+    }
 }
 
-// Function to start listening to user voice
 function startListening() {
     recognition.start();
     recognition.onresult = (event) => {
@@ -54,13 +55,12 @@ function fetchQuery(query) {
     })
     .then(response => response.json())
     .then(data => {
-        appendToChatBox(data.response); // Add bot response to chat box
-        speakResponse(data.response); // Read out the bot response
+        appendToChatBox(data.response);
+        speakResponse(data.response);
     })
     .catch(error => console.error('Error:', error));
 }
 
-// Text-to-Speech function
 function speakResponse(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
