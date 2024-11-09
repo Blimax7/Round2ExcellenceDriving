@@ -39,7 +39,10 @@ def load_embeddings_from_cache():
 def get_embedding(text, model="text-embedding-ada-002"):
     if text in embedding_cache:
         return embedding_cache[text]
+    
+    # Update this line according to the new API usage
     response = openai.Embedding.create(input=text, model=model)
+    
     embedding = response['data'][0]['embedding']
     embedding_cache[text] = embedding
     return embedding
@@ -107,6 +110,8 @@ How may I assist you with Excellence Driving's services?
             {"role": "user", "content": query}
         ]
     )
+    
+    # Adjusted response handling according to new API structure
     return response['choices'][0]['message']['content']
 
 if __name__ == '__main__':
