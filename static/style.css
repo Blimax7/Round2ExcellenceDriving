@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #fffeff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,13 +10,31 @@ body {
 
 .chat-container {
     width: 400px;
-    border: 1px solid #ccc;
+    border: 1px solid #0b6764;
     border-radius: 10px;
-    background-color: white;
+    background-color: #fffeff;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(11, 103, 100, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+h1 {
+    color: #0b6764;
+    margin: 0;
+    font-size: 24px;
 }
 
 .chat-box {
@@ -25,9 +43,9 @@ body {
     max-height: 400px;
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #0b6764;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #fffeff;
 }
 
 .user-message, .bot-message {
@@ -44,34 +62,33 @@ body {
 }
 
 .bot-message {
-    background-color: #eeeeee;
+    background-color: #f0f8f7;
     align-self: flex-start;
     text-align: left;
 }
 
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
 input[type="text"] {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #0b6764;
     border-radius: 5px;
-    width: calc(100% - 120px); /* Adjusted width to fit 2 buttons */
-    margin-right: 10px;
+    flex-grow: 1;
 }
 
 button {
-    padding: 10px 10px;
+    padding: 10px 15px;
     border: none;
-    background-color: #03a9f4;
-    color: white;
+    background-color: #0b6764;
+    color: #fffeff;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
-    min-width: 60px; /* Minimum width for better alignment */
+    min-width: 60px;
 }
 
 button:hover {
-    background-color: #0288d1;
-}
-
-button + button {
-    margin-left: 10px; /* Spacing between Send and Speak buttons */
+    background-color: #0a5956;
 }
