@@ -5,18 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Excellence GPT</title>
 <link rel="stylesheet" href="/static/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="chat-container">
     <div class="header">
-        <img src="/static/excellence-driving-logo.png" alt="Excellence Driving Company" class="logo">
-        <h1>Excellence GPT</h1>
+        <div class="logo">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/excellence%20driving%20UI%20Pic-Ytb0I3xfLPi2B76cbFaClGuSMsFWmY.png" alt="Excellence Driving Logo" class="logo-image">
+        </div>
+        <h1>EXCELLENCE GPT</h1>
     </div>
     <div class="chat-box" id="chat-box"></div>
-    <div class="input-area">
+    <div class="input-group">
         <input type="text" id="user-input" placeholder="Ask a question..." autofocus>
-        <button onclick="sendQuery()">Send</button>
-        <button onclick="startListening()">Speak</button>
+        <div class="button-group">
+            <button onclick="sendQuery()" class="send-btn">Send</button>
+            <button onclick="startListening()" class="speak-btn">Speak</button>
+        </div>
     </div>
 </div>
 
