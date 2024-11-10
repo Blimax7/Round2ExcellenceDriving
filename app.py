@@ -100,7 +100,7 @@ def generate_gpt_response(context, query):
 You are an AI assistant created by Excellence Driving to provide prompt and helpful customer service.
 Relevant context: {context}
 User Query: {query}
-How may I assist you with Excellence Driving's services?
+Provide a concise and precise response in 2-3 sentences maximum. Be direct and to the point.
 """
 
     response = openai.ChatCompletion.create(
@@ -108,10 +108,10 @@ How may I assist you with Excellence Driving's services?
         messages=[
             {"role": "system", "content": prompt},
             {"role": "user", "content": query}
-        ]
+        ],
+        max_tokens=100  # Limit the response length
     )
     
-    # Adjusted response handling according to new API structure
     return response['choices'][0]['message']['content']
 
 if __name__ == '__main__':
