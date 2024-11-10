@@ -3,15 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agentic RAG Chatbot</title>
+<title>Excellence GPT</title>
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <div class="chat-container">
+    <div class="header">
+        <img src="/static/excellence-driving-logo.png" alt="Excellence Driving Company" class="logo">
+        <h1>Excellence GPT</h1>
+    </div>
     <div class="chat-box" id="chat-box"></div>
-    <input type="text" id="user-input" placeholder="Ask a question..." autofocus>
-    <button onclick="sendQuery()">Send</button>
-    <button onclick="startListening()">Speak</button>
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="Ask a question..." autofocus>
+        <button onclick="sendQuery()">Send</button>
+        <button onclick="startListening()">Speak</button>
+    </div>
 </div>
 
 <script>
