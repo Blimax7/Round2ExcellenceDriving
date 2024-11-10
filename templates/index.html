@@ -19,7 +19,7 @@
     <div class="input-group">
         <input type="text" id="user-input" placeholder="Ask a question..." autofocus>
         <div class="button-group">
-            <button onclick="sendQuery()" class="send-btn">Send</button>
+            <button onclick="sendQuery(false)" class="send-btn">Send</button>
             <button onclick="startListening()" class="speak-btn">Speak</button>
         </div>
     </div>
@@ -38,12 +38,12 @@ function appendToChatBox(content, isUser = false) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function sendQuery() {
+function sendQuery(shouldSpeak = false) {
     const query = document.getElementById('user-input').value;
     if (query) {
         appendToChatBox(query, true);
         document.getElementById('user-input').value = '';
-        fetchQuery(query);
+        fetchQuery(query, shouldSpeak);
     }
 }
 
@@ -52,11 +52,11 @@ function startListening() {
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
         document.getElementById('user-input').value = transcript;
-        sendQuery();
+        sendQuery(true);
     };
 }
 
-function fetchQuery(query) {
+function fetchQuery(query, shouldSpeak) {
     fetch('/ask', {
         method: 'POST',
         headers: {
@@ -67,7 +67,9 @@ function fetchQuery(query) {
     .then(response => response.json())
     .then(data => {
         appendToChatBox(data.response);
-        speakResponse(data.response);
+        if (shouldSpeak) {
+            speakResponse(data.response);
+        }
     })
     .catch(error => console.error('Error:', error));
 }
