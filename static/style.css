@@ -30,11 +30,12 @@ body {
 }
 
 .logo {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .logo-image {
@@ -47,9 +48,9 @@ body {
     margin: 0;
     color: #FF0000;
     font-family: 'Orbitron', sans-serif;
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     background: linear-gradient(45deg, #FF0000, #FF3333);
@@ -62,10 +63,10 @@ body {
 .racing-title::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: 150px;
     height: 3px;
     background: linear-gradient(90deg, transparent, #FF0000, transparent);
 }
@@ -148,6 +149,11 @@ button:hover {
     }
     
     .racing-title {
-        font-size: 28px;
+        font-size: 32px;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
     }
 }
