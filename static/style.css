@@ -21,15 +21,17 @@ body {
 
 .header {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
+    text-align: center;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,12 +43,31 @@ body {
     object-fit: contain;
 }
 
-h1 {
+.racing-title {
     margin: 0;
     color: #FF0000;
-    font-size: 24px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #FF0000, #FF3333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    padding: 10px 0;
+}
+
+.racing-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #FF0000, transparent);
 }
 
 .chat-box {
@@ -126,7 +147,7 @@ button:hover {
         margin: 10px;
     }
     
-    h1 {
-        font-size: 20px;
+    .racing-title {
+        font-size: 28px;
     }
 }
