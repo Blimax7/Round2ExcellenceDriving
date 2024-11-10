@@ -44,5 +44,5 @@ def scrape_website(url):
         print(f"Error occurred while scraping {url}: {e}")
 
 # Start scraping from the main website URL
-website_url = 'https://cloudjune.com'
+website_url = 'https://www.excellencedriving.com'
 scrape_website(website_url)
