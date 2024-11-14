@@ -84,6 +84,13 @@ function speakResponse(text) {
         appendToChatBox('Speech synthesis is not supported in your browser.', true);
     }
 }
+
+// Add event listener for Enter key
+document.getElementById('user-input').addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        sendQuery(false);
+    }
+});
 </script>
 </body>
 </html>
