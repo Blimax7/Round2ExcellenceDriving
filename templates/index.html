@@ -48,6 +48,7 @@ function sendQuery(shouldSpeak = false) {
 }
 
 function startListening() {
+    appendToChatBox('Listening... Please speak now.', true);
     recognition.start();
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
@@ -75,8 +76,13 @@ function fetchQuery(query, shouldSpeak) {
 }
 
 function speakResponse(text) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    window.speechSynthesis.speak(utterance);
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(utterance);
+    } else {
+        console.error('Speech synthesis not supported');
+        appendToChatBox('Speech synthesis is not supported in your browser.', true);
+    }
 }
 </script>
 </body>
