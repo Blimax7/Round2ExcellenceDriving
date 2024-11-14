@@ -20,7 +20,7 @@
         <input type="text" id="user-input" placeholder="Ask a question..." autofocus>
         <div class="button-group">
             <button onclick="sendQuery(false)" class="send-btn">Send</button>
-            <button onclick="startListening()" class="speak-btn">Speak</button>
+            <button onclick="toggleListening()" id="speak-btn" class="speak-btn">Speak</button>
         </div>
     </div>
 </div>
@@ -28,6 +28,7 @@
 <script>
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.lang = 'en-US';
+let isListening = false;
 
 function appendToChatBox(content, isUser = false) {
     const chatBox = document.getElementById('chat-box');
@@ -47,13 +48,33 @@ function sendQuery(shouldSpeak = false) {
     }
 }
 
+function toggleListening() {
+    const speakBtn = document.getElementById('speak-btn');
+    if (!isListening) {
+        isListening = true;
+        speakBtn.textContent = 'Listening...';
+        speakBtn.classList.add('listening');
+        startListening();
+    } else {
+        isListening = false;
+        speakBtn.textContent = 'Speak';
+        speakBtn.classList.remove('listening');
+        recognition.stop();
+    }
+}
+
 function startListening() {
-    appendToChatBox('Listening... Please speak now.', true);
     recognition.start();
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
         document.getElementById('user-input').value = transcript;
         sendQuery(true);
+        toggleListening(); // Reset button state
+    };
+    recognition.onend = () => {
+        if (isListening) {
+            toggleListening(); // Reset button state if speech recognition ends unexpectedly
+        }
     };
 }
 
