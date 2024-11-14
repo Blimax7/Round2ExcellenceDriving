@@ -142,6 +142,11 @@ button:hover {
     text-align: left;
 }
 
+/* New style for the listening state of the speak button */
+.speak-btn.listening {
+    background-color: #ff3333;
+}
+
 @media (max-width: 640px) {
     .chat-container {
         width: 95%;
